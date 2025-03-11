@@ -39,9 +39,10 @@
 
     - name: set variables for next gather_fact playbook
       set_fact:
-        linux_path: "/home/ec2-user/advance-pocs-all/Ansible"
+        linux_path: "/home/ec2-user"
 
-    - import_playbook: advance-pocs-all/Ansible/gather_facts.yml  #should be in "" for import playbook as we have path var
+    - import_playbook: "{{ linux_path }}/advance-pocs-all/Ansible/gather_facts.yml"
+  #should be in "" for import playbook as we have path var
 
 
 # Output:
