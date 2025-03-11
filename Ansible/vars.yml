@@ -11,7 +11,7 @@
   gather_facts: true
   vars: # Global variables
     var1: "hello var1"
-    path: "/home/ec2-user/advance-pocs-all/Ansible"  # no "-" for vars for more variables
+    home_path: "/home/ec2-user/advance-pocs-all/Ansible"  # no "-" for vars for more variables
 
   tasks:
     - name: print local vars
@@ -20,7 +20,7 @@
 
     - name: set fact variables 
       set_fact:
-        fact_var1: "hey! set fact vars1"
+        fact_var1: "{{ home_path }}"
       
 # can execute mutiple playbooks in single file
 - name: Example of command line variable
@@ -29,8 +29,12 @@
     - name: Print command line variable
       debug:
         msg: "{{ cmd_var }}"
-  
-- import_playbook: "{{ path }}/gather_facts.yml"   #should be in "" for import playbook as we have path var
+
+
+- name: set variables for next gather_fact playbook
+  set_fact:
+    linux_path: "/home/ec2-user/advance-pocs-all/Ansible"
+- import_playbook: "{{ home_path }}/gather_facts.yml"   #should be in "" for import playbook as we have path var
 
 
 # Output:
