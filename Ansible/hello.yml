@@ -1,0 +1,3 @@
+- name: sample playbook
+  debug:
+    msg: "this is playbook has list of tasks"

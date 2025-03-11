@@ -23,7 +23,7 @@
         fact_var1: "/home/ec2-user"
     
     # import task
-    - include_tasks: "{{ fact_var1 }}/advance-pocs-all/Ansible/gather_facts.yml"
+    - include_tasks: "{{ fact_var1 }}/advance-pocs-all/Ansible/hello.yml"
       
 # can execute mutiple playbooks in single file
 - name: Example of command line variable
