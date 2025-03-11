@@ -7,3 +7,21 @@
     - name: print local vars
       debug:
         msg: "{{ var1 }}"
+
+# Output:
+# WARNING]: No inventory was parsed, only implicit localhost is available
+# [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+# PLAY [local variables] *******************************************************************************************************
+
+# TASK [Gathering Facts] *******************************************************************************************************
+# ok: [localhost]
+
+# TASK [print local vars] ******************************************************************************************************
+# ok: [localhost] => {
+#     "msg": "hello var1"
+# }
+
+# PLAY RECAP *******************************************************************************************************************
+# localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
