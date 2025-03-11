@@ -11,7 +11,7 @@
   gather_facts: true
   vars: # Global variables
     var1: "hello var1"
-    home_path: "/home/ec2-user/advance-pocs-all/Ansible"  # no "-" for vars for more variables
+    home_path: "/home/ec2-user"  # no "-" for vars for more variables
 
   tasks:
     - name: print local vars
@@ -21,6 +21,9 @@
     - name: set fact variables 
       set_fact:
         fact_var1: "{{ home_path }}"
+    
+    # import task
+    - import_task: "{{ home_path }}/advance-pocs-all/Ansible/gather_facts.yml"
       
 # can execute mutiple playbooks in single file
 - name: Example of command line variable
@@ -37,9 +40,7 @@
 # fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'cmd_var' is undefined. 'cmd_var' is undefined\n\nThe error appears to be in '/home/ec2-user/advance-pocs-all/Ansible/vars.yml': line 29, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: Print command line variable\n      ^ here\n"}
 
 
-    - name: set variables for next gather_fact playbook
-      set_fact:
-        linux_path: "/home/ec2-user"
+#importing the playbook 
 
 - import_playbook: "{{ linux_path }}/advance-pocs-all/Ansible/gather_facts.yml"
   vars: 
