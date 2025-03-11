@@ -54,7 +54,7 @@
 
 # can execute mutiple playbooks in single file
 - name: Example of command line variable
-  hosts: localhost
+  hosts: dev
   tasks:
     - name: Print command line variable
       debug:
@@ -63,7 +63,7 @@
 # [ec2-user@ip-172-31-92-178 Ansible]$ ansible-playbook -e cmd_var="command var value" vars.yml   ---- command line passing vars
 
 - name: Example playbook using vars.yml
-  hosts: localhost
+  hosts: dev
   vars: # Global variables
     home: "/home/ec2-user"
   vars_files:
