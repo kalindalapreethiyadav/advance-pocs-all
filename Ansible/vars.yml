@@ -12,7 +12,20 @@
   vars: # Global variables
     var1: "hello var1"
     home: "/home/ec2-user"
-  vars_files:  "{{ home }}/advance-pocs-all/Ansible/variables.yml" # no "-" for vars for more variables
+  vars_files:  "{{ home }}/advance-pocs-all/Ansible/variables.yml"
+  vars_prompt:
+    - name: "username"
+      prompt: "Please enter the username"
+      private: no  # set to 'yes' if the input is sensitive (e.g., password)
+      
+    - name: "password"
+      prompt: "Please enter the password"
+      private: yes  # hides the input when typed in terminal
+
+    - name: "confirm_password"
+      prompt: "Confirm your password"
+      private: yes
+      confirm: yes  # prompts the user twice to ensure the input is the same
 
   tasks:
     - name: print local vars
@@ -28,10 +41,6 @@
       debug:
         msg: "{{ app_name }}/{{ app_version }}"
 
-    - name: prompt the variable runtime
-      vars_prompt:
-        prompt: "enter the password runtime dynamically:"
-    
     # import task
     - include_tasks: "{{ fact_var1 }}/advance-pocs-all/Ansible/hello.yml"  # we have write mutiple others tassk in seperate file and the include in any playbook as requirments
       
@@ -45,6 +54,38 @@
 
 # [ec2-user@ip-172-31-92-178 Ansible]$ ansible-playbook -e cmd_var="command var value" vars.yml   ---- command line passing vars
 
+- name: Example playbook using vars.yml
+  hosts: localhost
+  vars: # Global variables
+    home: "/home/ec2-user"
+  vars_files:
+    -  "{{ home }}/advance-pocs-all/Ansible/variables.yml"
+  tasks:
+    - name: Display app name and version
+      debug:
+        msg: "App Name: {{ app_name }}, Version: {{ app_version }}"
+
+    - name: Display maximum retries and timeout
+      debug:
+        msg: "Max Retries: {{ max_retries }}, Timeout: {{ timeout }}"
+
+    - name: Check if feature X is enabled
+      debug:
+        msg: "Feature X is enabled: {{ enable_feature_x }}"
+
+    - name: Show allowed IPs
+      debug:
+        msg: "Allowed IPs: {{ allowed_ips }}"
+
+    - name: Show database host
+      debug:
+        msg: "Database host: {{ database.host }}"
+
+# Complex structures: Lists, dictionaries, and nested structures.
+    - name: Show server details
+      debug:
+        msg: "Server: {{ item.name }} with IP: {{ item.ip }} and Role: {{ item.role }}"
+      loop: "{{ servers }}"
         
 # TASK [Print command line variable] *******************************************************************************************
 # fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'cmd_var' is undefined. 'cmd_var' is undefined\n\nThe error appears to be in '/home/ec2-user/advance-pocs-all/Ansible/vars.yml': line 29, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: Print command line variable\n      ^ here\n"}
