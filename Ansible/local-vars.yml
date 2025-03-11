@@ -1,0 +1,9 @@
+- name: local variables
+  hosts: localhost
+  gather_facts: true
+  vars: 
+    var1: "hello var1"
+  tasks:
+    - name: print local vars
+      debug:
+        msg: {{ var1 }}
