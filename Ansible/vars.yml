@@ -28,13 +28,20 @@
   tasks:
     - name: Print command line variable
       debug:
-        msg: "{{ cmd_var }}"
+        msg: "{{ cmd_var }}"   # no variables passed from CMD Line below undefined vars error you get
+
+# [ec2-user@ip-172-31-92-178 Ansible]$ ansible-playbook -e cmd_var="command var value" vars.yml   ---- command line passing vars
+
+        
+# TASK [Print command line variable] *******************************************************************************************
+# fatal: [localhost]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'cmd_var' is undefined. 'cmd_var' is undefined\n\nThe error appears to be in '/home/ec2-user/advance-pocs-all/Ansible/vars.yml': line 29, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: Print command line variable\n      ^ here\n"}
+
 
     - name: set variables for next gather_fact playbook
       set_fact:
         linux_path: "/home/ec2-user/advance-pocs-all/Ansible"
 
-    - import_playbook: "{{ linux_path }}/gather_facts.yml"   #should be in "" for import playbook as we have path var
+    - import_playbook: "./gather_facts.yml"   #should be in "" for import playbook as we have path var
 
 
 # Output:
