@@ -45,3 +45,4 @@ user_list:
 
 # File path variable
 log_path: "/var/log/{{ app_name }}/"
+
