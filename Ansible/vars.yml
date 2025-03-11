@@ -11,7 +11,8 @@
   gather_facts: true
   vars: # Global variables
     var1: "hello var1"
-    home: "/home/ec2-user"  # no "-" for vars for more variables
+    home: "/home/ec2-user"
+  vars_file:  "{{ home }}/advance-pocs-all/Ansible/variables.yml" # no "-" for vars for more variables
 
   tasks:
     - name: print local vars
@@ -21,6 +22,11 @@
     - name: set fact variables 
       set_fact:
         fact_var1: "/home/ec2-user"
+
+# using variables which is declared in vars_file path
+    - name: print variables from vars file
+      debug:
+        msg: "{{ app_name }}/{{ app_version }}"
     
     # import task
     - include_tasks: "{{ fact_var1 }}/advance-pocs-all/Ansible/hello.yml"  # we have write mutiple others tassk in seperate file and the include in any playbook as requirments
@@ -46,22 +52,4 @@
   vars: 
     linux_path: "/home/ec2-user"
   #should be in "" for import playbook as we have path var
-
-
-# Output:
-# WARNING]: No inventory was parsed, only implicit localhost is available
-# [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
-
-# PLAY [local variables] *******************************************************************************************************
-
-# TASK [Gathering Facts] *******************************************************************************************************
-# ok: [localhost]
-
-# TASK [print local vars] ******************************************************************************************************
-# ok: [localhost] => {
-#     "msg": "hello var1"
-# }
-
-# PLAY RECAP *******************************************************************************************************************
-# localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
