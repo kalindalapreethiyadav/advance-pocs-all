@@ -1,12 +1,35 @@
+
+# variables:
+# Local Variable: Defined within a task (using set_fact).
+# Global Variable: Defined at the playbook level (using vars).
+# Prompt Variable: Defined by asking the user during playbook execution (vars_prompt).
+# Vars File: Defined in an external file and included in the playbook (vars_files).
+# Command Line Variable: Passed directly via the command line using -e or --extra-vars.
+
 - name: local variables
   hosts: localhost
   gather_facts: true
-  vars: 
+  vars: # Global variables
     var1: "hello var1"
   tasks:
     - name: print local vars
       debug:
         msg: "{{ var1 }}"
+
+    - name: set fact variables 
+      set_fact:
+        fact_var1: "hey! set fact vars1"
+      
+# can execute mutiple playbooks in single file
+- name: Example of command line variable
+  hosts: localhost
+  tasks:
+    - name: Print command line variable
+      debug:
+        msg: "{{ cmd_var }}"
+  
+- import_playbook: advance-pocs-all/Ansible/gather_facts.yml
+
 
 # Output:
 # WARNING]: No inventory was parsed, only implicit localhost is available
