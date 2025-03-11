@@ -10,8 +10,8 @@
   hosts: localhost
   gather_facts: true
   vars: # Global variables
-    - var1: "hello var1"
-    - path: "/home/ec2-user/advance-pocs-all/Ansible"
+    var1: "hello var1"
+    path: "/home/ec2-user/advance-pocs-all/Ansible"
 
   tasks:
     - name: print local vars
