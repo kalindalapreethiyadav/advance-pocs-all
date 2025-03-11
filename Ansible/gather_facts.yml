@@ -1,6 +1,7 @@
-# which provides detailed information about the system (e.g., OS, memory, network interfaces, etc.). 
+# Gather facts: which provides detailed information about the system (e.g., OS, memory, network interfaces, etc.). 
 - name: display gather facts
   hosts: localhost
+  gather_facts: true  #  set to true means ansible will have all the properties of system, not required set to false
   tasks:
     - name: display gather facts
       debug:
