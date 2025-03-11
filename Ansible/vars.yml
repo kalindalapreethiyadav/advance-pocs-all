@@ -10,7 +10,9 @@
   hosts: localhost
   gather_facts: true
   vars: # Global variables
-    var1: "hello var1"
+    - var1: "hello var1"
+    - path: "/home/ec2-user/advance-pocs-all/Ansible"
+
   tasks:
     - name: print local vars
       debug:
@@ -28,7 +30,7 @@
       debug:
         msg: "{{ cmd_var }}"
   
-- import_playbook: advance-pocs-all/Ansible/gather_facts.yml
+- import_playbook: {{ path }}/advance-pocs-all/Ansible/gather_facts.yml
 
 
 # Output:
