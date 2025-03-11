@@ -1,0 +1,6 @@
+- name: display gather facts
+  hosts: localhost
+  tasks:
+    - name: display gather facts
+      debug:
+        msg: "{{ ansible_facts }}"
