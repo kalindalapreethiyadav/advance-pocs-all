@@ -11,7 +11,7 @@
   gather_facts: true
   vars: # Global variables
     var1: "hello var1"
-    path: "/home/ec2-user/advance-pocs-all/Ansible"
+    path: "/home/ec2-user/advance-pocs-all/Ansible"  # no "-" for vars for more variables
 
   tasks:
     - name: print local vars
@@ -30,7 +30,7 @@
       debug:
         msg: "{{ cmd_var }}"
   
-- import_playbook: "{{ path }}/gather_facts.yml"
+- import_playbook: "{{ path }}/gather_facts.yml"   #should be in "" for import playbook as we have path var
 
 
 # Output:
