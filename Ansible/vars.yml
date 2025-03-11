@@ -12,7 +12,7 @@
   vars: # Global variables
     var1: "hello var1"
     home: "/home/ec2-user"
-  vars_file:  "{{ home }}/advance-pocs-all/Ansible/variables.yml" # no "-" for vars for more variables
+  vars_files:  "{{ home }}/advance-pocs-all/Ansible/variables.yml" # no "-" for vars for more variables
 
   tasks:
     - name: print local vars
