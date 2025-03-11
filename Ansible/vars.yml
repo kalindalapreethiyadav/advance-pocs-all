@@ -30,7 +30,7 @@
       debug:
         msg: "{{ cmd_var }}"
   
-- import_playbook: {{ path }}/advance-pocs-all/Ansible/gather_facts.yml
+- import_playbook: "{{ path }}"/advance-pocs-all/Ansible/gather_facts.yml
 
 
 # Output:
