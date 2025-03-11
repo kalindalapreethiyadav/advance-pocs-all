@@ -1,8 +1,0 @@
-# inventory.yml
-
-all:
-  children:
-    dev:
-      hosts:
-        ec2-35-175-235-245.compute-1.amazonaws.com:
-          ansible_user: ec2-user
