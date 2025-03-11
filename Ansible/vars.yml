@@ -27,6 +27,10 @@
     - name: print variables from vars file
       debug:
         msg: "{{ app_name }}/{{ app_version }}"
+
+    - name: prompt the variable runtime
+      vars_prompt:
+        prompt: "enter the password runtime dynamically:"
     
     # import task
     - include_tasks: "{{ fact_var1 }}/advance-pocs-all/Ansible/hello.yml"  # we have write mutiple others tassk in seperate file and the include in any playbook as requirments
