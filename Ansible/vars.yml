@@ -31,7 +31,7 @@
         msg: "{{ cmd_var }}"
 
     - name: set variables for next gather_fact playbook
-      set_facts:
+      set_fact:
         linux_path: "/home/ec2-user/advance-pocs-all/Ansible"
 
     - import_playbook: "{{ linux_path }}/gather_facts.yml"   #should be in "" for import playbook as we have path var
