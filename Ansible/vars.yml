@@ -42,6 +42,8 @@
         linux_path: "/home/ec2-user"
 
 - import_playbook: "{{ linux_path }}/advance-pocs-all/Ansible/gather_facts.yml"
+  vars: 
+    linux_path: "/home/ec2-user"
   #should be in "" for import playbook as we have path var
 
 
